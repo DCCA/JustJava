@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "538711545098",
+    "firebase_url": "https://justjava-c3f3e.firebaseio.com",
+    "project_id": "justjava-c3f3e",
+    "storage_bucket": "justjava-c3f3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538711545098:android:cc2bb8458ecda51b",
+        "android_client_info": {
+          "package_name": "com.example.android.justjava"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538711545098-bc2uu6jo5isntg27md017jq7ksnb1mee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBetcx2HM8SIYdrdb7-FUwgO32MVNPlNJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
