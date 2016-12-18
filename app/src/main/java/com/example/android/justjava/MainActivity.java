@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
         displayMessage(priceMessage);
     }
 
-    private void displayQuantity(int number) {
+    private void displayQuantity(int quantity) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + quantity);
     }
 
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(quantity));
     }
 
     /**
