@@ -49,16 +49,30 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
+    /**
+     * Calculate the price of the order
+     *
+     * @return total price
+     */
     public int calculatePrice() {
         int priceOfCoffee = 5;
         int price = quantity * priceOfCoffee;
         return price;
     }
 
+    public String createOrderSummary(int price){
+        String name = "Name: Daniel Andrade";
+        String qnt = "\nQuantity: " + quantity;
+        String total = "\nTotal: " + price;
+        String thank = "\nThank You!";
+        String full = name + qnt + total + thank;
+        return full;
+    }
+
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String priceMessage = "Total = $ " + price;
-        priceMessage = priceMessage + "\nThank you!";
+        String full = createOrderSummary(price);
+        String priceMessage = full;
         displayMessage(priceMessage);
     }
 
