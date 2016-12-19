@@ -1,11 +1,11 @@
 package com.example.android.justjava;
 
-import android.icu.text.NumberFormat;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -13,8 +13,6 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import io.fabric.sdk.android.Fabric;
-
-import static com.example.android.justjava.R.string.quantity;
 
 /**
  * This app displays an order form to order coffee.
@@ -60,10 +58,15 @@ public class MainActivity extends AppCompatActivity {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     * @return return the Order Summary
+     */
     public String createOrderSummary(int price){
         String name = "Name: Daniel Andrade";
         String qnt = "\nQuantity: " + quantity;
-        String total = "\nTotal: " + price;
+        String total = "\nTotal: $" + price;
         String thank = "\nThank You!";
         String full = name + qnt + total + thank;
         return full;
@@ -71,19 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String full = createOrderSummary(price);
-        String priceMessage = full;
-        displayMessage(priceMessage);
+        displayMessage(createOrderSummary(price));
     }
 
     private void displayQuantity(int quantity) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + quantity);
-    }
-
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(quantity));
     }
 
     /**
