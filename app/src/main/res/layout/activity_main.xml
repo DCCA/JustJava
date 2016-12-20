@@ -7,8 +7,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.example.android.justjava.MainActivity">
+    tools:context="com.example.android.justjava.MainActivity"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toppings"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/darker_gray" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Whipped Cream"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="24dp"/>
 
     <TextView
         android:layout_width="wrap_content"
