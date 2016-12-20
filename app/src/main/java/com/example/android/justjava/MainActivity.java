@@ -3,6 +3,7 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
@@ -60,18 +61,33 @@ public class MainActivity extends AppCompatActivity {
      * @param price
      * @return return the Order Summary
      */
-    public String createOrderSummary(int price){
+    public String createOrderSummary(int price, Boolean hasWhippedCream, Boolean hasChocolate){
         String name = "Name: Daniel Andrade";
+        String whippedCream = "\nAdd: Whipped Cream";
+        String chocolate = "\nAdd: Chocalate";
         String qnt = "\nQuantity: " + quantity;
         String total = "\nTotal: $" + price;
         String thank = "\nThank You!";
-        String full = name + qnt + total + thank;
-        return full;
+        String full = name;
+
+        if (hasWhippedCream == true) {
+            full += whippedCream;
+        }
+        if (hasChocolate == true) {
+            full += chocolate;
+        }
+            full += qnt + total + thank;
+            return full;
     }
 
     public void submitOrder(View view) {
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price));
+        CheckBox whippedCream = (CheckBox) findViewById(R.id.checkbox_whippedCream_textview);
+        Boolean hasWhippedCream = whippedCream.isChecked();
+        CheckBox chocalate = (CheckBox) findViewById(R.id.checkbox_chocalate_textview);
+        Boolean hasChocolate = chocalate.isChecked();
+
+        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate));
     }
 
     private void displayQuantity(int quantity) {
