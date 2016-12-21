@@ -15,6 +15,15 @@
         android:orientation="vertical"
         android:baselineAligned="false">
 
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"
+            android:hint="Input your name here ;D"
+            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
@@ -61,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
      * @param price
      * @return return the Order Summary
      */
-    public String createOrderSummary(int price, Boolean hasWhippedCream, Boolean hasChocolate){
-        String name = "Name: Daniel Andrade";
+    public String createOrderSummary(String name, int price, Boolean hasWhippedCream, Boolean hasChocolate){
+        String nameInput = name;
         String whippedCream = "\nAdd: Whipped Cream";
         String chocolate = "\nAdd: Chocalate";
         String qnt = "\nQuantity: " + quantity;
@@ -87,7 +88,10 @@ public class MainActivity extends AppCompatActivity {
         CheckBox chocalate = (CheckBox) findViewById(R.id.checkbox_chocalate_textview);
         Boolean hasChocolate = chocalate.isChecked();
 
-        displayMessage(createOrderSummary(price, hasWhippedCream, hasChocolate));
+        EditText nameInput = (EditText) findViewById(R.id.name_input);
+        String name = nameInput.getText().toString();
+
+        displayMessage(createOrderSummary(name, price, hasWhippedCream, hasChocolate));
     }
 
     private void displayQuantity(int quantity) {
