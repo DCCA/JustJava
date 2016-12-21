@@ -51,8 +51,17 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return total price
      */
-    public int calculatePrice() {
+    public int calculatePrice(Boolean hasWhippedCream, Boolean hasChocolate) {
         int priceOfCoffee = 5;
+
+        if (hasWhippedCream){
+            priceOfCoffee = priceOfCoffee + 1;
+        }
+
+        if (hasChocolate) {
+            priceOfCoffee = priceOfCoffee + 2;
+        }
+
         int price = quantity * priceOfCoffee;
         return price;
     }
@@ -63,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
      * @return return the Order Summary
      */
     public String createOrderSummary(String name, int price, Boolean hasWhippedCream, Boolean hasChocolate){
-        String nameInput = name;
+        String nameInput = "Name: " + name;
         String whippedCream = "\nAdd: Whipped Cream";
         String chocolate = "\nAdd: Chocalate";
         String qnt = "\nQuantity: " + quantity;
         String total = "\nTotal: $" + price;
         String thank = "\nThank You!";
-        String full = name;
+        String full = nameInput;
 
         if (hasWhippedCream == true) {
             full += whippedCream;
@@ -82,15 +91,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        int price = calculatePrice();
+        //Check if the Whipped Cream is selected
         CheckBox whippedCream = (CheckBox) findViewById(R.id.checkbox_whippedCream_textview);
         Boolean hasWhippedCream = whippedCream.isChecked();
+
+        //Check if the Chocalate is selected
         CheckBox chocalate = (CheckBox) findViewById(R.id.checkbox_chocalate_textview);
         Boolean hasChocolate = chocalate.isChecked();
 
+        // Get the name input in the EditText field
         EditText nameInput = (EditText) findViewById(R.id.name_input);
         String name = nameInput.getText().toString();
 
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
         displayMessage(createOrderSummary(name, price, hasWhippedCream, hasChocolate));
     }
 
