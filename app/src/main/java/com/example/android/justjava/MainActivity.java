@@ -1,6 +1,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +22,7 @@ import io.fabric.sdk.android.Fabric;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 99;
+    int quantity = 2;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -48,24 +50,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view) {
+        if (quantity == 100) {
+            toast(getCurrentFocus());
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
-        //limiting the max coff a user can have
-        if (quantity >= 100){
-            quantity = 100;
-            toast(getCurrentFocus());
-
-        }
     }
 
     public void decrement(View view) {
+        if (quantity <= 1) {
+            toast(getCurrentFocus());
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
-        //limiting the min coff users can have
-        if (quantity <= 1) {
-            quantity = 1;
-            toast(getCurrentFocus());
-        }
     }
 
     /**
@@ -112,6 +111,20 @@ public class MainActivity extends AppCompatActivity {
             return full;
     }
 
+    public void submitOrderEmail(String full, String name) {
+        String email = new String("dcca12@gmail.com");
+        Intent createEmail = new Intent(Intent.ACTION_SENDTO);
+        createEmail.setData(Uri.parse("mailto:"));
+        createEmail.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + name);
+        createEmail.putExtra(Intent.EXTRA_EMAIL, "dcca12@gmail.com");
+        createEmail.putExtra(Intent.EXTRA_TEXT, full);
+        if (createEmail.resolveActivity(getPackageManager()) != null) {
+            startActivity(createEmail);
+        }
+
+
+    }
+
     public void submitOrder(View view) {
         //Check if the Whipped Cream is selected
         CheckBox whippedCream = (CheckBox) findViewById(R.id.checkbox_whippedCream_textview);
@@ -127,12 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         displayMessage(createOrderSummary(name, price, hasWhippedCream, hasChocolate));
+        submitOrderEmail(createOrderSummary(name, price, hasWhippedCream, hasChocolate), name);
     }
 
     private void displayQuantity(int quantity) {
         //Find the view that display the quantity
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-
         quantityTextView.setText("" + quantity);
 
 
